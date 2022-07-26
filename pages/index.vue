@@ -25,6 +25,11 @@ const { result, loading } = useCharacterList({page: currentPage})
             <span>{{scope.row.location.name}}</span>
           </template>
         </el-table-column>
+        <el-table-column prop="id" label="Actions">
+          <template #default="scope">
+            <nuxt-link :to="{ path: `/character-detail/${scope.row.id}`}">View</nuxt-link>
+          </template>
+        </el-table-column>
       </el-table>
       <el-pagination
           v-model:currentPage="currentPage"

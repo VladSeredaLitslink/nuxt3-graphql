@@ -8,6 +8,7 @@ import { useQuery } from '@vue/apollo-composable'
             page: $page
         ) {
             results {
+                id
                 name
                 gender
                 image
