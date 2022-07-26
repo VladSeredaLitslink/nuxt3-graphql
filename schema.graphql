@@ -1,0 +1,20 @@
+type Characters {
+    results: Character
+    info: Info
+}
+
+type Character {
+    name: String
+    gender: String
+    image: String
+    location: Location
+}
+
+type Location {
+    name: String
+}
+
+type Info {
+    count: Int
+    pages: Int
+}
