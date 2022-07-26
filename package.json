@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "npm run lint:js && npm run lint:prettier",
+    "lintfix": "prettier --write --list-different . && npm run lint:js -- --fix"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "nuxt": "3.0.0-rc.6",
+    "prettier": "2.7.1"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "@element-plus/icons-vue": "^2.0.6",
+    "@vue/apollo-composable": "^4.0.0-alpha.19",
+    "@vue/apollo-option": "^4.0.0-alpha.20",
+    "element-plus": "^2.2.10",
+    "graphql": "^16.5.0",
+    "graphql-tag": "^2.12.6",
+    "vue": "^3.2.37",
+    "vue-apollo": "^3.1.0"
+  }
+}
