@@ -30,6 +30,8 @@
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@element-plus/icons-vue": "^2.0.6",
+    "@graphql-codegen/typescript-operations": "^2.5.2",
+    "@graphql-codegen/typescript-vue-apollo-smart-ops": "^2.3.2",
     "@vue/apollo-composable": "^4.0.0-alpha.19",
     "@vue/apollo-option": "^4.0.0-alpha.20",
     "element-plus": "^2.2.10",

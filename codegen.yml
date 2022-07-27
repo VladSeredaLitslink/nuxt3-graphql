@@ -1,0 +1,8 @@
+schema: https://rickandmortyapi.com/graphql
+documents: './composables/*.ts'
+generates:
+  ./types/graphql/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-vue-apollo-smart-ops

@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client/core"
-import { useQuery } from '@vue/apollo-composable'
-
+import { useQuery } from "@vue/apollo-composable"
+import {CharactersQuery, CharactersQueryVariables} from "~/types/graphql/generated";
+import { Ref } from "vue";
 
  const CharactersQueryDefinition = gql`
     query characters ($page: Int) {
@@ -23,8 +24,11 @@ import { useQuery } from '@vue/apollo-composable'
         }
     }
 `
-export function useCharacterList(props: { page?: ref<number>}) {
-    return useQuery(CharactersQueryDefinition, {
-        page: props.page
-    })
+export function useCharacterList(props: { page?: Ref<number>}) {
+    return useQuery<CharactersQuery, CharactersQueryVariables>(
+        CharactersQueryDefinition,
+        reactive({
+             page: props.page
+         })
+    )
 }
