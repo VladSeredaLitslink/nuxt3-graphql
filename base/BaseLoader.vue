@@ -19,7 +19,11 @@ export default {
   height: 40px;
   animation: spin 2s linear infinite;
   &__wrap {
-    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
   }
 }
 

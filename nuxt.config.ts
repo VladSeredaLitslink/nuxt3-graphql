@@ -14,7 +14,10 @@ export default defineNuxtConfig({
       { name: "format-detection", content: "telephone=no" }
     ]
   },
-  css: ["element-plus/dist/index.css"],
+  css: [
+    "element-plus/dist/index.css",
+    "assets/css/main.scss"
+  ],
   build: {
     transpile: ["@apollo/client", "ts-invariant/process"]
   }

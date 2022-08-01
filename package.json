@@ -34,6 +34,7 @@
     "@graphql-codegen/typescript-vue-apollo-smart-ops": "^2.3.2",
     "@vue/apollo-composable": "^4.0.0-alpha.19",
     "@vue/apollo-option": "^4.0.0-alpha.20",
+    "@vueuse/core": "^9.0.1",
     "element-plus": "^2.2.10",
     "graphql": "^16.5.0",
     "graphql-tag": "^2.12.6",

@@ -1,13 +1,16 @@
 <script setup>
 import { ElContainer, ElHeader, ElMain, ElFooter } from "element-plus";
+import BaseHeader from "../base/BaseHeader";
 </script>
 <template>
   <div class="common-layout">
-    <el-container class="container">
-      <el-header></el-header>
-      <el-main><slot /></el-main>
-      <el-footer></el-footer>
-    </el-container>
+    <el-header><base-header /></el-header>
+    <el-main>
+      <el-container class="container">
+        <slot />
+      </el-container>
+    </el-main>
+    <el-footer />
   </div>
 </template>
 <style>

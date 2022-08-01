@@ -15,7 +15,7 @@ const { result, loading } = useCharacterList({ page: currentPage });
           v-for="character in result.characters.results"
           :key="character.id"
           class="characters-link"
-          :to="{ path: `/character-detail/${character.id}` }"
+          :to="{ path: `/character/${character.id}` }"
         >
           <el-card
             shadow="hover"
@@ -43,6 +43,7 @@ const { result, loading } = useCharacterList({ page: currentPage });
       <el-pagination
         v-model:currentPage="currentPage"
         :total="result.characters.info.pages"
+        layout="prev, pager, next"
       />
     </div>
     <base-loader v-if="loading" />
@@ -50,6 +51,7 @@ const { result, loading } = useCharacterList({ page: currentPage });
 </template>
 
 <style lang="scss">
+@import "assets/css/mixins/media";
 .characters {
   display: flex;
   flex-wrap: wrap;
@@ -58,6 +60,18 @@ const { result, loading } = useCharacterList({ page: currentPage });
   }
   &-link {
     text-decoration: none;
+    margin: 2%;
+    min-width: 250px;
+    @include for-phone-only {
+      width: 100%;
+      margin: 2% 0;
+    }
+    @include for-tablet-landscape-up {
+      width: calc(33% - 4%);
+    }
+    @include for-desktop-up {
+      width: calc(25% - 4%);
+    }
   }
   &-desc {
     position: relative;
@@ -86,9 +100,21 @@ const { result, loading } = useCharacterList({ page: currentPage });
     }
   }
   &-card {
-    margin: 14px;
-    width: 276px;
-    height: 368px;
+    @include for-tablet-landscape-up {
+      height: 380px;
+    }
+    @include for-desktop-up {
+      height: 348px;
+    }
+  }
+  .el {
+    &-card {
+      &__body {
+        .el-image {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 </style>
