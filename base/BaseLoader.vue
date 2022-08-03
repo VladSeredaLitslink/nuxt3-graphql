@@ -1,13 +1,11 @@
 <template>
-  <section class="loader__wrap">
+  <div>
     <div class="loader" />
-  </section>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "BaseLoader"
-};
+<script setup>
+
 </script>
 
 <style lang="scss">
@@ -18,13 +16,11 @@ export default {
   width: 40px;
   height: 40px;
   animation: spin 2s linear infinite;
-  &__wrap {
-    position: absolute;
-    left: 50%;
-    right: 50%;
-    top: 50%;
-    bottom: 50%;
-  }
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
 }
 
 @keyframes spin {
