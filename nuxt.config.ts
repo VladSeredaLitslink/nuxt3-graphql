@@ -2,6 +2,9 @@ import { defineNuxtConfig } from "nuxt";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  publicRuntimeConfig: {
+    API_ENDPOINT: process.env.NUXT_ENV_API_ENDPOINT
+  },
   head: {
     title: "nuxt3-GraphQL-pet",
     htmlAttrs: {
@@ -17,6 +20,9 @@ export default defineNuxtConfig({
   css: [
     "element-plus/dist/index.css",
     "assets/css/main.scss"
+  ],
+  modules: [
+    "nuxt-windicss"
   ],
   build: {
     transpile: ["@apollo/client", "ts-invariant/process"]

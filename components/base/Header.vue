@@ -15,11 +15,11 @@ theme.value = isDark.value;
     mode="horizontal"
   >
     <div>
-      <nuxt-link to="/" class="logo">
-        <img src="/assets/images/logo.png" alt="logo">
+      <nuxt-link to="/" class="pt-2 pb-2">
+        <img class="h-20" src="/assets/images/logo.png" alt="logo">
       </nuxt-link>
     </div>
-    <div class="switch__wrap" @click="toggleDark()">
+    <div class="flex items-center" @click="toggleDark()">
       <el-switch
         v-model="theme"
         class="ml-2"
@@ -31,22 +31,3 @@ theme.value = isDark.value;
     </div>
   </el-menu>
 </template>
-
-<style lang="scss">
-.flex-grow {
-  flex-grow: 1;
-}
-header {
-  height: 100px !important;
-  .switch__wrap {
-    margin: auto 0;
-  }
-  .logo {
-    padding: 0 20px;
-    img {
-      height: 100px;
-    }
-  }
-}
-
-</style>
