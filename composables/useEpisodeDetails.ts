@@ -17,6 +17,7 @@ const EpisodeQueryDefinition = gql`
                 id
                 name
                 image
+                gender
             }
         }
     }

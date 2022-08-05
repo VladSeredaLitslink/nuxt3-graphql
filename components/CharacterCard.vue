@@ -1,15 +1,16 @@
 <script lang="ts" setup>
 import { ElImage, ElCard } from "element-plus";
 
-defineProps({
+const props = defineProps({
   character: {
     type: Object,
     required: true
   }
 });
 
-const bgByCharacterGender = (gender) => {
+const bgByCharacterGender = computed(() => {
   let bg;
+  const gender = props.character.gender.toLowerCase();
   switch (gender) {
   case "male": {
     bg = "bg-[#008bff]";
@@ -25,7 +26,7 @@ const bgByCharacterGender = (gender) => {
   }
   }
   return bg;
-};
+});
 </script>
 <template>
   <el-card
@@ -45,7 +46,7 @@ const bgByCharacterGender = (gender) => {
           character.location.name
         }}</span>
       </div>
-      <div class="w-5 h-5 absolute right-1 top-1 rounded-full" :class="bgByCharacterGender(character.gender.toLowerCase())" />
+      <div class="w-3 h-3 absolute right-1 top-1 rounded-full" :class="bgByCharacterGender" />
     </div>
   </el-card>
 </template>

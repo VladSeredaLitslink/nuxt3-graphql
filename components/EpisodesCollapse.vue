@@ -11,10 +11,10 @@ const activeNames = ref([0]);
 </script>
 
 <template>
-  <div class="episodes">
-    <div class="episodes-title">
-      <h1>Episodes</h1>
-    </div>
+  <div>
+    <h1 class="text-center text-2xl mb-4">
+      Episodes
+    </h1>
     <el-collapse
       v-model="activeNames"
     >
@@ -24,7 +24,7 @@ const activeNames = ref([0]);
         :name="idx"
       >
         <template #title>
-          <div class="collapse-item__title">
+          <div class="flex justify-between w-full">
             <b>{{ episode.name }}</b>
             <span>{{ episode.air_date }}</span>
           </div>
@@ -36,8 +36,8 @@ const activeNames = ref([0]);
           <div>
             <b>Characters have played in this episodes: </b><span>{{ episode.characters.length }}</span>
           </div>
-          <div class="collapse-item__actions">
-            <nuxt-link :to="`/episodes/${episode.id}`">
+          <div class="flex justify-end">
+            <nuxt-link class="no-underline" :to="`/episodes/${episode.id}`">
               <el-button type="primary">
                 Read more
               </el-button>
@@ -48,16 +48,3 @@ const activeNames = ref([0]);
     </el-collapse>
   </div>
 </template>
-
-<style scoped lang="scss">
-.episodes {
-  &-title {
-    text-align: center;
-  }
-}
-.collapse-item__actions {
-  a {
-    text-decoration: none;
-  }
-}
-</style>

@@ -1,155 +1,43 @@
 <script setup lang="ts">
-import { ElContainer, ElImage, ElPagination, ElCard, ElSkeleton, ElSkeletonItem, ElButton } from "element-plus";
-import { useCharacterList } from "@/composables/useCharactersList";
+import { ElPagination, ElSkeleton, ElSkeletonItem } from "element-plus";
 const currentPage = ref(1);
 const { result, loading, error } = useCharacterList({ page: currentPage });
 
 </script>
 
 <template>
-  <el-container class="characters__wrap">
-    <div class="characters-title">
-      <h1>Characters</h1>
-    </div>
+  <section>
     <el-skeleton :loading="loading" animated>
       <template #template>
-        <div v-for="n in 12" :key="n" style="margin: 2%">
-          <el-skeleton-item variant="image" style="width: 240px; height: 240px" />
-          <div style="padding: 14px">
-            <el-skeleton-item variant="h3" style="width: 50%" />
-            <div
-              style="
-              display: flex;
-              align-items: center;
-              justify-items: space-between;
-              margin-top: 16px;
-              height: 16px;
-            "
-            >
-              <el-skeleton-item variant="text" style="margin-right: 16px" />
-              <el-skeleton-item variant="text" style="width: 30%" />
-            </div>
+        <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+          <div v-for="n in 12" :key="n" class="flex flex-col m-2">
+            <el-skeleton-item variant="image" style="height: 270px" />
+            <el-skeleton-item v-for="i in 2" :key="i" variant="text" class="mb-2 mt-2" />
           </div>
         </div>
       </template>
       <template #default>
-        <div class="characters">
-          <nuxt-link
-            v-for="character in result.characters.results"
-            :key="character.id"
-            class="characters-link"
-            :to="{ path: `/characters/${character.id}` }"
-          >
-            <el-card
-              shadow="hover"
-              class="characters-card"
-              :body-style="{ padding: '0px' }"
+        <div v-if="result && result.characters">
+          <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+            <nuxt-link
+              v-for="character in result.characters.results"
+              :key="character.id"
+              class="no-underline m-2"
+              :to="{ path: `/characters/${character.id}` }"
             >
-              <el-image :src="character.image" />
-              <div
-                class="characters-desc"
-                :class="`characters-desc__${character.gender.toLowerCase()}`"
-                style="padding: 14px"
-              >
-                <div>
-                  <b>Name: </b><span>{{ character.name }}</span>
-                </div>
-                <div>
-                  <b>Location: </b><span v-if="character.location">{{
-                    character.location.name
-                  }}</span>
-                </div>
-              </div>
-            </el-card>
-          </nuxt-link>
+              <character-card :character="character" />
+            </nuxt-link>
+          </div>
+          <el-pagination
+            v-model:currentPage="currentPage"
+            :total="result.characters.info.pages"
+            layout="prev, pager, next"
+          />
         </div>
-        <el-pagination
-          v-model:currentPage="currentPage"
-          :total="result.characters.info.pages"
-          layout="prev, pager, next"
-        />
       </template>
     </el-skeleton>
     <div v-if="error">
-      {{ error }}
+      Error: {{ error.message }}
     </div>
-  </el-container>
+  </section>
 </template>
-
-<style lang="scss">
-@import "assets/css/mixins/media";
-.characters {
-  display: flex;
-  flex-wrap: wrap;
-  &__wrap {
-    display: flex;
-    flex-direction: column;
-    .el-skeleton {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-  }
-  &-title {
-    text-align: center;
-  }
-  &-link {
-    text-decoration: none;
-    margin: 2%;
-    min-width: 240px;
-    @include for-phone-only {
-      width: 100%;
-      margin: 2% 0;
-    }
-    @include for-tablet-landscape-up {
-      width: calc(33% - 4%);
-    }
-    @include for-desktop-up {
-      width: calc(25% - 4%);
-    }
-  }
-  &-desc {
-    position: relative;
-    &::before {
-      content: "";
-      height: 10px;
-      width: 10px;
-      position: absolute;
-      border-radius: 20px;
-      right: 5px;
-    }
-    &__male {
-      &::before {
-        background: #008bff;
-      }
-    }
-    &__female {
-      &::before {
-        background: #ff7e7e;
-      }
-    }
-    &__unknown {
-      &::before {
-        background: #c7c3c3;
-      }
-    }
-  }
-  &-card {
-    @include for-tablet-landscape-up {
-      height: 380px;
-    }
-    @include for-desktop-up {
-      height: 348px;
-    }
-  }
-  .el {
-    &-card {
-      &__body {
-        .el-image {
-          width: 100%;
-        }
-      }
-    }
-  }
-}
-</style>
