@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ElMenu, ElSwitch } from "element-plus";
 import { Moon, Sunny } from "@element-plus/icons-vue";
 import { useDark, useToggle } from "@vueuse/core";
 
@@ -14,11 +13,7 @@ theme.value = isDark.value;
   <el-menu
     mode="horizontal"
   >
-    <div>
-      <nuxt-link to="/" class="pt-2 pb-2">
-        <img class="h-20" src="/assets/images/logo.png" alt="logo">
-      </nuxt-link>
-    </div>
+    <app-logo />
     <div class="flex items-center" @click="toggleDark()">
       <el-switch
         v-model="theme"

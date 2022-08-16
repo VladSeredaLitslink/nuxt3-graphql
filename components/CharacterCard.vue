@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ElImage, ElCard } from "element-plus";
 
 defineProps({
   character: {

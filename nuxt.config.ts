@@ -1,4 +1,7 @@
 import { defineNuxtConfig } from "nuxt";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -16,6 +19,20 @@ export default defineNuxtConfig({
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" }
     ]
+  },
+  vite: {
+    plugins: [
+      // ...
+      AutoImport({
+        resolvers: [ElementPlusResolver()]
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()]
+      })
+    ],
+    ssr: {
+      noExternal: ["element-plus"]
+    }
   },
   css: [
     "element-plus/dist/index.css",

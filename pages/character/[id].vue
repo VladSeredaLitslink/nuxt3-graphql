@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ElImage, ElCollapse, ElCollapseItem, ElPageHeader, ElButton, ElBadge } from "element-plus";
 const route = useRoute();
 
 const { result, loading, error } = useCharacterDetails({ id: route.params.id });
