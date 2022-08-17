@@ -1,10 +1,4 @@
 <script setup lang="ts">
-
-import { ElPagination } from "element-plus";
-import EpisodesCollapse from "~/components/EpisodesCollapse.vue";
-import { useEpisodesList } from "~/composables/useEpisodesList";
-import BaseLoader from "~/base/BaseLoader.vue";
-
 const currentPage = ref(1);
 const { result, loading, error } = useEpisodesList({ page: currentPage });
 </script>

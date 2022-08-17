@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { ElContainer, ElImage, ElBadge, ElSkeleton, ElSkeletonItem } from "element-plus";
-import { useCharacterDetails } from "@/composables/useCharacterDetails";
-import EpisodesCollapse from "~/components/EpisodesCollapse.vue";
 const route = useRoute();
 
 const { result, loading, error } = useCharacterDetails({ id: route.params.id });

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-
-import { ElContainer, ElSkeleton, ElSkeletonItem } from "element-plus";
-
 const route = useRoute();
 const { result, loading, error } = useEpisodeDetails({ id: route.params.id });
 
