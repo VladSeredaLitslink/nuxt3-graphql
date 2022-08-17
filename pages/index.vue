@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ElContainer } from "element-plus";
 const navs = [
   {
     id: 1,
