@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client/core";
 import { useQuery } from "@vue/apollo-composable";
-import { ID } from "graphql-ws";
 import { CharacterQuery, CharacterQueryVariables } from "~/types/graphql/generated";
 
 const CharacterQueryDefinition = gql`
@@ -35,7 +34,7 @@ const CharacterQueryDefinition = gql`
         }
     }
 `;
-export function useCharacterDetails (props: { id?: ID }) {
+export function useCharacterDetails (props: { id?: string }) {
   return useQuery<CharacterQuery, CharacterQueryVariables>(
     CharacterQueryDefinition,
     reactive({

@@ -1,10 +1,3 @@
-<script setup lang="ts">
-const route = useRoute();
-
-const { result, loading, error } = useCharacterDetails({ id: route.params.id });
-const activeNames = ref([0]);
-</script>
-
 <template>
   <div class="flex flex-col w-full">
     <div>
@@ -72,3 +65,10 @@ const activeNames = ref([0]);
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const route = useRoute();
+
+const { result, loading, error } = useCharacterDetails({ id: route.params.id });
+const activeNames = ref<[number]>([0]);
+</script>

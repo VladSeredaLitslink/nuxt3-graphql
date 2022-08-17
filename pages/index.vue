@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import CharactersContainer from "~/components/CharactersContainer.vue";
-const currentPage = ref(1);
-const { result, loading, error } = useCharacterList({ page: currentPage });
-
-</script>
-
 <template>
   <section>
     <base-loader v-if="loading" />
@@ -38,3 +31,8 @@ const { result, loading, error } = useCharacterList({ page: currentPage });
     </characters-container>
   </section>
 </template>
+
+<script setup lang="ts">
+const currentPage = ref<number>(1);
+const { result, loading, error } = useCharacterList({ page: currentPage });
+</script>

@@ -1,14 +1,3 @@
-<script lang="ts" setup>
-import { Moon, Sunny } from "@element-plus/icons-vue";
-import { useDark, useToggle } from "@vueuse/core";
-
-const isDark = useDark();
-const toggleDark = useToggle(isDark);
-const theme = ref();
-theme.value = isDark.value;
-
-</script>
-
 <template>
   <el-menu
     mode="horizontal"
@@ -26,3 +15,14 @@ theme.value = isDark.value;
     </div>
   </el-menu>
 </template>
+
+<script lang="ts" setup>
+import { Moon, Sunny } from "@element-plus/icons-vue";
+import { useDark, useToggle } from "@vueuse/core";
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+const theme = ref();
+theme.value = isDark.value;
+
+</script>
