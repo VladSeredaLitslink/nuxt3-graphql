@@ -1,9 +1,3 @@
-<script setup lang="ts">
-const currentPage = ref(1);
-const { result, loading, error } = useCharacterList({ page: currentPage });
-
-</script>
-
 <template>
   <section>
     <base-loader v-if="loading" />
@@ -29,7 +23,6 @@ const { result, loading, error } = useCharacterList({ page: currentPage });
           </nuxt-link>
         </div>
         <el-pagination
-          v-if="result.characters.info"
           v-model:currentPage="currentPage"
           :total="result.characters.info.pages"
           layout="prev, pager, next"
@@ -38,3 +31,8 @@ const { result, loading, error } = useCharacterList({ page: currentPage });
     </characters-container>
   </section>
 </template>
+
+<script setup lang="ts">
+const currentPage = ref<number>(1);
+const { result, loading, error } = useCharacterList({ page: currentPage });
+</script>

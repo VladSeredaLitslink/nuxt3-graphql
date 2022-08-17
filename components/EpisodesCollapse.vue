@@ -1,15 +1,3 @@
-<script setup lang="ts">
-import { ElButton, ElCollapse, ElCollapseItem } from "element-plus";
-import { Episodes } from "~/types/graphql/generated";
-
-interface EpisodesProps {
-  episodes: Episodes
-}
-defineProps<EpisodesProps>();
-const activeNames = ref([0]);
-
-</script>
-
 <template>
   <div>
     <h1 class="text-center text-2xl mb-4">
@@ -48,3 +36,14 @@ const activeNames = ref([0]);
     </el-collapse>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Episodes } from "~/types/graphql/generated";
+
+interface EpisodesProps {
+  episodes: Episodes
+}
+defineProps<EpisodesProps>();
+const activeNames = ref<number[]>([0]);
+
+</script>

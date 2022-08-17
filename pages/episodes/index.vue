@@ -1,8 +1,3 @@
-<script setup lang="ts">
-const currentPage = ref(1);
-const { result, loading, error } = useEpisodesList({ page: currentPage });
-</script>
-
 <template>
   <section class="flex flex-col">
     <div v-if="loading">
@@ -21,3 +16,8 @@ const { result, loading, error } = useEpisodesList({ page: currentPage });
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+const currentPage = ref<number>(1);
+const { result, loading, error } = useEpisodesList({ page: currentPage });
+</script>

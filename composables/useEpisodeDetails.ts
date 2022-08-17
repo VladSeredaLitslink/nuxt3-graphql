@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client/core";
 import { useQuery } from "@vue/apollo-composable";
 import { ID } from "graphql-ws";
+import { Ref } from "vue";
 import { EpisodeQuery, EpisodeQueryVariables } from "~/types/graphql/generated";
 
 const EpisodeQueryDefinition = gql`
@@ -22,7 +23,7 @@ const EpisodeQueryDefinition = gql`
         }
     }
 `;
-export function useEpisodeDetails (props: { id?: ID }) {
+export function useEpisodeDetails (props: { id?: Ref<string> }) {
   return useQuery<EpisodeQuery, EpisodeQueryVariables>(
     EpisodeQueryDefinition,
     reactive({

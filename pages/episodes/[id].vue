@@ -1,9 +1,3 @@
-<script setup lang="ts">
-const route = useRoute();
-const { result, loading, error } = useEpisodeDetails({ id: route.params.id });
-
-</script>
-
 <template>
   <el-container>
     <el-skeleton :loading="loading" animated>
@@ -49,3 +43,8 @@ const { result, loading, error } = useEpisodeDetails({ id: route.params.id });
     </div>
   </el-container>
 </template>
+
+<script setup lang="ts">
+const route = useRoute();
+const { result, loading, error } = useEpisodeDetails({ id: route.params.id });
+</script>
