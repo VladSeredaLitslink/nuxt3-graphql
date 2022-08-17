@@ -24,6 +24,16 @@ module.exports = {
     "no-unused-vars": [
       "error",
       { vars: "all", args: "after-used", ignoreRestSiblings: false }
-    ]
+    ],
+    "vue/component-tags-order": [
+      "error",
+      {
+        order: ["template", "script", "style"]
+      }
+    ],
+    "vue/component-api-style": ["error",
+      ["script-setup"] // "script-setup", "composition", "composition-vue2", or "options"
+    ],
+    "vue/padding-line-between-blocks": ["error", "always"]
   }
 };

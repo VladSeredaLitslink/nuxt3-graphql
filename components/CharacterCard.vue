@@ -1,32 +1,3 @@
-<script lang="ts" setup>
-
-const props = defineProps({
-  character: {
-    type: Object,
-    required: true
-  }
-});
-
-const bgByCharacterGender = computed(() => {
-  let bg;
-  const gender = props.character.gender.toLowerCase();
-  switch (gender) {
-  case "male": {
-    bg = "bg-[#008bff]";
-    break;
-  }
-  case "female": {
-    bg = "bg-[#e03ec0]";
-    break;
-  }
-  default: {
-    bg = "bg-[#c1c1c1]";
-    break;
-  }
-  }
-  return bg;
-});
-</script>
 <template>
   <el-card
     shadow="hover"
@@ -45,7 +16,29 @@ const bgByCharacterGender = computed(() => {
           character.location.name
         }}</span>
       </div>
-      <div class="w-3 h-3 absolute right-1 top-1 rounded-full" :class="bgByCharacterGender" />
+      <div class="w-5 h-5 absolute right-1 top-1 rounded-full" :class="getBgByCharacterGender(character.gender.toLowerCase())" />
     </div>
   </el-card>
 </template>
+
+<script lang="ts" setup>
+import { Character } from "~/types/graphql/generated";
+interface props {
+  character: Character
+}
+defineProps<props>();
+
+const getBgByCharacterGender = (gender: string) : string => {
+  switch (gender) {
+  case "male": {
+    return "bg-[#008bff]";
+  }
+  case "female": {
+    return "bg-[#e03ec0]";
+  }
+  default: {
+    return "bg-[#c1c1c1]";
+  }
+  }
+};
+</script>
