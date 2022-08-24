@@ -1,11 +1,12 @@
 <template>
   <section>
+    <filters-tooltip @filter="filterCharacter" />
     <base-loader v-if="loading" />
 
     <div v-else-if="error">
       Error: {{ error.message }}
     </div>
-    <characters-container v-else-if="result && result.characters">
+    <characters-container v-else-if="result && result.characters && result.characters.results.length">
       <template #header>
         <h1 class="font-medium text-xl">
           Characters
@@ -29,10 +30,18 @@
         />
       </template>
     </characters-container>
+    <div v-else class="mt-4">
+      <span class="text-">No data by filters</span>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import { FilterCharacter } from "~/types/graphql/generated";
 const currentPage = ref<number>(1);
-const { result, loading, error } = useCharacterList({ page: currentPage });
+const filterCharacter = (filters: FilterCharacter) => {
+  refetch({ page: 1, ...filters });
+};
+
+const { result, loading, error, refetch } = useCharacterList({ page: currentPage });
 </script>

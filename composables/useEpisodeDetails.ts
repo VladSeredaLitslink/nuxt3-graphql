@@ -19,6 +19,10 @@ const EpisodeQueryDefinition = gql`
                 name
                 image
                 gender
+                status
+                location {
+                    name
+                }
             }
         }
     }
