@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client/core";
 import { useQuery } from "@vue/apollo-composable";
+import { Ref } from "vue";
 import { CharacterQuery, CharacterQueryVariables } from "~/types/graphql/generated";
 
 const CharacterQueryDefinition = gql`
@@ -34,7 +35,7 @@ const CharacterQueryDefinition = gql`
         }
     }
 `;
-export function useCharacterDetails (props: { id?: string }) {
+export function useCharacterDetails (props: { id?: Ref<string> }) {
   return useQuery<CharacterQuery, CharacterQueryVariables>(
     CharacterQueryDefinition,
     reactive({

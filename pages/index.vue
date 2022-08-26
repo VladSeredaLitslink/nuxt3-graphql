@@ -1,38 +1,29 @@
 <template>
-  <section>
-    <base-loader v-if="loading" />
-
-    <div v-else-if="error">
-      Error: {{ error.message }}
+  <el-container>
+    <div class="w-full flex flex flex-col justify-center items-center mt-8">
+      <nuxt-link v-for="nav in navs" :key="nav.id" :to="nav.link" class="no-underline border-1 rounded-md border-hex-98d25b hover:bg-[#98d25b] hover:text-white w-80 mb-4 p-8 text-center uppercase transition-colors">
+        {{ nav.name }}
+      </nuxt-link>
     </div>
-    <characters-container v-else-if="result && result.characters">
-      <template #header>
-        <h1 class="font-medium text-xl">
-          Characters
-        </h1>
-      </template>
-      <template #content>
-        <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-          <nuxt-link
-            v-for="character in result.characters.results"
-            :key="character.id"
-            class="no-underline m-2"
-            :to="{ path: `/character/${character.id}` }"
-          >
-            <character-card :character="character" />
-          </nuxt-link>
-        </div>
-        <el-pagination
-          v-model:currentPage="currentPage"
-          :total="result.characters.info.pages"
-          layout="prev, pager, next"
-        />
-      </template>
-    </characters-container>
-  </section>
+  </el-container>
 </template>
 
 <script setup lang="ts">
-const currentPage = ref<number>(1);
-const { result, loading, error } = useCharacterList({ page: currentPage });
+interface Nav {
+  id: number,
+  name: string,
+  link: string
+}
+const navs = ref<Nav[]>([
+  {
+    id: 1,
+    name: "Characters",
+    link: "/characters"
+  },
+  {
+    id: 2,
+    name: "Episodes",
+    link: "/episodes"
+  }
+]);
 </script>

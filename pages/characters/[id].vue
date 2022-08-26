@@ -1,8 +1,5 @@
 <template>
   <div class="flex flex-col w-full">
-    <div>
-      <el-page-header @click="$router.go(-1)" />
-    </div>
     <base-loader v-if="loading" />
     <div v-else-if="error">
       Error: {{ error.message }}
@@ -56,9 +53,11 @@
             <b>Characters have played in this episodes: </b><span>{{ episode.characters.length }}</span>
           </div>
           <div class="flex justify-end">
-            <el-button type="primary">
-              Read more
-            </el-button>
+            <nuxt-link class="no-underline" :to="`/episodes/${episode.id}`">
+              <el-button type="primary">
+                Read more
+              </el-button>
+            </nuxt-link>
           </div>
         </el-collapse-item>
       </el-collapse>
@@ -70,5 +69,5 @@
 const route = useRoute();
 
 const { result, loading, error } = useCharacterDetails({ id: route.params.id });
-const activeNames = ref<[number]>([0]);
+const activeNames = ref<number[]>([0]);
 </script>
