@@ -23,10 +23,10 @@
 
 <script lang="ts" setup>
 import { Character } from "~/types/graphql/generated";
-interface CharacterProps {
+interface CharacterCardProps {
   character: Character
 }
-defineProps<CharacterProps>();
+defineProps<CharacterCardProps>();
 
 const getBgByCharacterGender = (gender: string) : string => {
   switch (gender) {

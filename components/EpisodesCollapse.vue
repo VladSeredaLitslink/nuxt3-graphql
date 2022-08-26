@@ -40,10 +40,7 @@
 <script setup lang="ts">
 import { Episodes } from "~/types/graphql/generated";
 
-interface EpisodesProps {
-  episodes: Episodes
-}
-defineProps<EpisodesProps>();
+defineProps<{ episodes: Episodes }>();
 const activeNames = ref<number[]>([0]);
 
 </script>
