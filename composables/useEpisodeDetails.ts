@@ -27,7 +27,7 @@ const EpisodeQueryDefinition = gql`
         }
     }
 `;
-export function useEpisodeDetails (props: { id?: Ref<string> }) {
+export function useEpisodeDetails (props: { id: Ref<string> }) {
   return useQuery<EpisodeQuery, EpisodeQueryVariables>(
     EpisodeQueryDefinition,
     reactive({

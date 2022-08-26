@@ -44,10 +44,10 @@
 import { Female, Male, QuestionFilled, LocationInformation } from "@element-plus/icons-vue";
 import { Character } from "~/types/graphql/generated";
 
-interface CharacterProps {
+interface CharacterCardProps {
   character: Character
 }
-defineProps<CharacterProps>();
+defineProps<CharacterCardProps>();
 
 const getColorByCharacterStatus = (status: string) :string => {
   switch (status) {
