@@ -1,11 +1,8 @@
 <template>
   <div>
-    <div class="text-center p-4">
-      <slot
-        name="header"
-      />
-    </div>
-
+    <slot
+      name="header"
+    />
     <slot name="content" />
   </div>
 </template>
