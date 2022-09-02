@@ -32,11 +32,13 @@
                 <character-card :character="character" />
               </nuxt-link>
             </div>
-            <el-pagination
-              v-model:currentPage="currentPage"
-              :total="result.characters.info.pages"
-              layout="prev, pager, next"
-            />
+            <template v-if="result.characters.info">
+              <el-pagination
+                v-model:currentPage="page"
+                :total="result.characters.info.pages"
+                layout="prev, pager, next"
+              />
+            </template>
           </template>
         </characters-container>
         <div v-else class="mt-4">
@@ -48,11 +50,16 @@
 </template>
 
 <script setup lang="ts">
-import { FilterCharacter } from "~/types/graphql/generated";
-const currentPage = ref<number>(1);
-const filterCharacter = (filters: FilterCharacter) => {
-  refetch({ page: 1, ...filters });
+const { page, filters } = useCharactersFilters();
+
+const filterCharacter = (value) => {
+  filters.value = value;
 };
 
-const { result, loading, error, refetch } = useCharacterList({ page: currentPage });
+const { result, loading, error } = useCharacterList(
+  reactive({
+    page,
+    filter: filters
+  })
+);
 </script>
