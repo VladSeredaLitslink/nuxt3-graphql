@@ -52,11 +52,7 @@
 
 <script setup lang="ts">
 import { Search } from "@element-plus/icons-vue";
-
-type Options = {
-  value: string
-  label: string
-}
+const { statuses, genders, searchTypes, ALL } = useCharactersFilters();
 
 type Filters = {
   status: string
@@ -68,7 +64,6 @@ type Filters = {
 
 const router = useRouter();
 const route = useRoute();
-const ALL = "all";
 
 const beforeFilterCharacters = () => {
   const objFilters = Object.assign({}, filters, {
@@ -90,25 +85,6 @@ const filters = reactive<Filters>({
   species: "",
   type: ""
 });
-
-const statuses: Options[] = [
-  { value: "", label: ALL },
-  { value: "alive", label: "Alive" },
-  { value: "dead", label: "Dead" },
-  { value: "unknown", label: "Unknown" }
-];
-const genders: Options[] = [
-  { value: "", label: ALL },
-  { value: "female", label: "Female" },
-  { value: "male", label: "Male" },
-  { value: "genderless", label: "Genderless" },
-  { value: "unknown", label: "Unknown" }
-];
-const searchTypes : Options[] = [
-  { value: "name", label: "Name" },
-  { value: "species", label: "Species" },
-  { value: "type", label: "Type" }
-];
 
 if (route.query) {
   Object.assign(filters, route.query);

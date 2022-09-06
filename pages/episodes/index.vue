@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-col">
     <div v-if="loading">
-      <base-loader v-if="loading" />
+      <loader v-if="loading" />
     </div>
     <div v-else-if="error">
       Error {{ error.message }}

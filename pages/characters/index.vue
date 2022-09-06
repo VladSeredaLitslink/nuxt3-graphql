@@ -1,6 +1,6 @@
 <template>
   <section>
-    <filters-tooltip />
+    <characters-filters-bar />
     <h1 class="text-center mt-4 font-medium text-xl">
       Characters
     </h1>
@@ -29,7 +29,7 @@
                 class="no-underline m-2"
                 :to="{ path: `/characters/${character.id}` }"
               >
-                <character-card :character="character" />
+                <characters-card :character="character" />
               </nuxt-link>
             </div>
             <template v-if="result.characters.info">

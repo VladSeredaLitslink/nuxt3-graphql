@@ -20,6 +20,11 @@ export default defineNuxtConfig({
       { name: "format-detection", content: "telephone=no" }
     ]
   },
+  components: [
+    "~/components",
+    { path: "~/components/domains" },
+    { path: "~/components/ui" }
+  ],
   vite: {
     plugins: [
       // ...
