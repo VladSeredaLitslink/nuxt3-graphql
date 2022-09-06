@@ -1,33 +1,22 @@
 <template>
   <section class="flex flex-col lg:items-center">
-    <div class="flex items-center">
-      <el-select v-model="typeSearch" placeholder="Select type search" size="small">
-        <el-option
-          v-for="item in searchTypes"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-          :disabled="item.disabled"
-        />
-      </el-select>
+    <div class="flex items-center md:min-w-1xl">
       <el-input
-        v-model="filters[typeSearch]"
+        v-model="name"
         size="small"
         clearable
-        :placeholder="`Type ${typeSearch}`"
+        placeholder="Type name"
         :prefix-icon="Search"
-        @input="beforeFilterCharacters"
       />
     </div>
     <div class="flex flex-wrap">
       <div class="flex flex-col mr-4 md:items-center">
         <b>Statuses: </b>
-        <el-radio-group v-model="filters.status" size="small">
+        <el-radio-group v-model="status" size="small">
           <el-radio-button
-            v-for="item in statuses"
+            v-for="item in statusOptions"
             :key="item.value"
             :label="item.label"
-            @change="beforeFilterCharacters"
           >
             {{ item.label }}
           </el-radio-button>
@@ -35,12 +24,11 @@
       </div>
       <div class="flex flex-col md:items-center">
         <b>Genders: </b>
-        <el-radio-group v-model="filters.gender" size="small">
+        <el-radio-group v-model="gender" size="small">
           <el-radio-button
-            v-for="item in genders"
+            v-for="item in genderOptions"
             :key="item.value"
             :label="item.label"
-            @change="beforeFilterCharacters"
           >
             {{ item.label }}
           </el-radio-button>
@@ -52,42 +40,6 @@
 
 <script setup lang="ts">
 import { Search } from "@element-plus/icons-vue";
-const { statuses, genders, searchTypes, ALL } = useCharactersFilters();
-
-type Filters = {
-  status: string
-  gender: string
-  name: string
-  species: string,
-  type: string
-}
-
-const router = useRouter();
-const route = useRoute();
-
-const beforeFilterCharacters = () => {
-  const objFilters = Object.assign({}, filters, {
-    status: filters.status === ALL ? "" : filters.status,
-    gender: filters.gender === ALL ? "" : filters.gender
-  });
-  router.replace({
-    query: {
-      ...objFilters
-    }
-  });
-};
-
-const typeSearch = ref<string>("name");
-const filters = reactive<Filters>({
-  status: ALL,
-  gender: ALL,
-  name: "",
-  species: "",
-  type: ""
-});
-
-if (route.query) {
-  Object.assign(filters, route.query);
-}
-
+const { filters, statusOptions, genderOptions } = useCharactersFilters();
+const { name, status, gender } = filters;
 </script>

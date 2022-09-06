@@ -4,31 +4,6 @@ export function useCharactersFilters () {
   const route = useRoute();
   const router = useRouter();
 
-  const filters = computed<{status?: string, name?: string, gender?: string, species?: string, type?: string}>({
-    get () {
-      return {
-        status: route.query[QueryParams.Status] as string,
-        name: route.query[QueryParams.Name] as string,
-        species: route.query[QueryParams.Species] as string,
-        gender: route.query[QueryParams.Gender] as string,
-        type: route.query[QueryParams.Type] as string
-      };
-    },
-    set (value) {
-      router.push({
-        query: Object.assign(
-          {},
-          {
-            ...route.query
-          },
-          {
-            ...value
-          }
-        )
-      });
-    }
-  });
-
   const page = computed({
     get () {
       return Number(route.query[QueryParams.Page]) || 1;
@@ -40,6 +15,41 @@ export function useCharactersFilters () {
     }
   });
 
+  const name = computed({
+    get () {
+      return route.query[QueryParams.Name];
+    },
+    set (value) {
+      router.push({
+        query: Object.assign({}, { ...route.query, [QueryParams.Name]: value })
+      });
+    }
+  });
+
+  const status = computed({
+    get () {
+      const status = route.query[QueryParams.Status];
+      return status === ALL ? "" : status;
+    },
+    set (value) {
+      router.push({
+        query: Object.assign({}, { ...route.query, [QueryParams.Status]: value })
+      });
+    }
+  });
+
+  const gender = computed({
+    get () {
+      const gender = route.query[QueryParams.Gender];
+      return gender === ALL ? "" : gender;
+    },
+    set (value) {
+      router.push({
+        query: Object.assign({}, { ...route.query, [QueryParams.Gender]: value })
+      });
+    }
+  });
+
   const ALL = "all";
 
   type Options = {
@@ -47,31 +57,28 @@ export function useCharactersFilters () {
     label: string
   }
 
-  const statuses: Options[] = [
+  const statusOptions: Options[] = [
     { value: "", label: ALL },
     { value: "alive", label: "Alive" },
     { value: "dead", label: "Dead" },
     { value: "unknown", label: "Unknown" }
   ];
-  const genders: Options[] = [
+  const genderOptions: Options[] = [
     { value: "", label: ALL },
     { value: "female", label: "Female" },
     { value: "male", label: "Male" },
     { value: "genderless", label: "Genderless" },
     { value: "unknown", label: "Unknown" }
   ];
-  const searchTypes : Options[] = [
-    { value: "name", label: "Name" },
-    { value: "species", label: "Species" },
-    { value: "type", label: "Type" }
-  ];
 
   return {
     page,
-    filters,
-    statuses,
-    genders,
-    searchTypes,
-    ALL
+    filters: {
+      name,
+      status,
+      gender
+    },
+    statusOptions,
+    genderOptions
   };
 }
