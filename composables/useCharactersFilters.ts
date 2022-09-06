@@ -4,7 +4,7 @@ export function useCharactersFilters () {
   const route = useRoute();
   const router = useRouter();
 
-  const filters = computed({
+  const filters = computed<{status?: string, name?: string, gender?: string, species?: string, type?: string}>({
     get () {
       return (route.query as QueryParams) || undefined;
     },

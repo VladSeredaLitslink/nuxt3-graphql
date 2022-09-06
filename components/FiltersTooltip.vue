@@ -69,20 +69,17 @@ type Filters = {
 const router = useRouter();
 const route = useRoute();
 const ALL = "all";
-const emits = defineEmits(["filter"]);
+
 const beforeFilterCharacters = () => {
-  router.replace({
-    query: {
-      ...filters
-    }
-  });
-  filterCharacters();
-};
-const filterCharacters = () => {
-  emits("filter", Object.assign({}, filters, {
+  const objFilters = Object.assign({}, filters, {
     status: filters.status === ALL ? "" : filters.status,
     gender: filters.gender === ALL ? "" : filters.gender
-  }));
+  });
+  router.replace({
+    query: {
+      ...objFilters
+    }
+  });
 };
 
 const typeSearch = ref<string>("name");
@@ -115,7 +112,6 @@ const searchTypes : Options[] = [
 
 if (route.query) {
   Object.assign(filters, route.query);
-  filterCharacters();
 }
 
 </script>

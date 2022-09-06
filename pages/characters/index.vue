@@ -1,6 +1,6 @@
 <template>
   <section>
-    <filters-tooltip @filter="filterCharacter" />
+    <filters-tooltip />
     <h1 class="text-center mt-4 font-medium text-xl">
       Characters
     </h1>
@@ -51,10 +51,6 @@
 
 <script setup lang="ts">
 const { page, filters } = useCharactersFilters();
-
-const filterCharacter = (value) => {
-  filters.value = value;
-};
 
 const { result, loading, error } = useCharacterList(
   reactive({
