@@ -40,6 +40,6 @@
 
 <script setup lang="ts">
 import { Search } from "@element-plus/icons-vue";
-const { filters, statusOptions, genderOptions } = useCharactersFilters();
-const { name, status, gender } = filters;
+const { filter, statusOptions, genderOptions } = useCharactersFilters();
+const { name, status, gender } = filter;
 </script>

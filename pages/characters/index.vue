@@ -50,12 +50,12 @@
 </template>
 
 <script setup lang="ts">
-const { page, filters } = useCharactersFilters();
+const { page, filter } = useCharactersFilters();
 
 const { result, loading, error } = useCharacterList(
   reactive({
     page,
-    filter: filters
+    filter
   })
 );
 </script>

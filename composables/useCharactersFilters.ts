@@ -73,7 +73,7 @@ export function useCharactersFilters () {
 
   return {
     page,
-    filters: {
+    filter: {
       name,
       status,
       gender
