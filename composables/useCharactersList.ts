@@ -1,19 +1,21 @@
 import { gql } from "@apollo/client/core";
 import { useQuery } from "@vue/apollo-composable";
-import { Ref } from "vue";
 import {
-  CharactersQuery,
-  CharactersQueryVariables
+  Query,
+  QueryCharacterArgs
 } from "~/types/graphql/generated";
 
 const CharactersQueryDefinition = gql`
-  query characters($page: Int) {
-    characters(page: $page) {
+  query characters($page: Int, $filter: FilterCharacter) {
+    characters(page: $page, filter: $filter) {
       results {
         id
         name
         gender
         image
+        status
+        species
+        type
         location {
           name
         }
@@ -25,11 +27,9 @@ const CharactersQueryDefinition = gql`
     }
   }
 `;
-export function useCharacterList (props: { page?: Ref<number> }) {
-  return useQuery<CharactersQuery, CharactersQueryVariables>(
+export function useCharacterList (props?: QueryCharacterArgs) {
+  return useQuery<{characters: Query["characters"] }, QueryCharacterArgs>(
     CharactersQueryDefinition,
-    reactive({
-      page: props.page
-    })
+    props
   );
 }

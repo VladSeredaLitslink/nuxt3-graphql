@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <div class="w-full flex flex flex-col justify-center items-center mt-8">
+    <div class="flex flex-col justify-center items-center absolute top-0 bottom-0 right-0 left-0">
       <nuxt-link v-for="nav in navs" :key="nav.id" :to="nav.link" class="no-underline border-1 rounded-md border-hex-98d25b hover:bg-[#98d25b] hover:text-white w-80 mb-4 p-8 text-center uppercase transition-colors">
         {{ nav.name }}
       </nuxt-link>

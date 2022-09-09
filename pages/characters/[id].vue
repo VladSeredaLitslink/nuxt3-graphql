@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col w-full">
-    <base-loader v-if="loading" />
+    <loader v-if="loading" />
     <div v-else-if="error">
       Error: {{ error.message }}
     </div>
