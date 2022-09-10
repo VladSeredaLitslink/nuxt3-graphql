@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <h1 class="text-center text-2xl mb-4">
-      Episodes
-    </h1>
-    <el-collapse
+  <el-collapse
       v-model="activeNames"
     >
       <el-collapse-item
@@ -34,7 +30,6 @@
         </div>
       </el-collapse-item>
     </el-collapse>
-  </div>
 </template>
 
 <script setup lang="ts">

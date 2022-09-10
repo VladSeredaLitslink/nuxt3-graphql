@@ -4,5 +4,6 @@ export enum QueryParams {
     Name = "name",
     Gender = "gender",
     Species = "species",
-    Type = "type"
+    Type = "type",
+    Episode = "episode"
 }

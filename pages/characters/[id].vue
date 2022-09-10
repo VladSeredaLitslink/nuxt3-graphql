@@ -34,40 +34,14 @@
       <h1 class="text-center text-xl mb-4">
         Episodes
       </h1>
-      <el-collapse v-model="activeNames">
-        <el-collapse-item
-          v-for="(episode, idx) in result.character.episode"
-          :key="episode.id"
-          :name="idx"
-        >
-          <template #title>
-            <div class="flex justify-between w-full">
-              <b>{{ episode.name }}</b>
-              <span>{{ episode.air_date }}</span>
-            </div>
-          </template>
-          <div>
-            <b>Episode number: </b><span>{{ episode.episode }}</span>
-          </div>
-          <div>
-            <b>Characters have played in this episodes: </b><span>{{ episode.characters.length }}</span>
-          </div>
-          <div class="flex justify-end">
-            <nuxt-link class="no-underline" :to="`/episodes/${episode.id}`">
-              <el-button type="primary">
-                Read more
-              </el-button>
-            </nuxt-link>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+      <episodes-collapse :episodes="result.character.episode"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const route = useRoute();
+const id = route.params.id;
 
-const { result, loading, error } = useCharacterDetails({ id: route.params.id });
-const activeNames = ref<number[]>([0]);
+const { result, loading, error } = useCharacterDetails({ id });
 </script>
