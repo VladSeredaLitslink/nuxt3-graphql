@@ -8,6 +8,8 @@ export default defineNuxtConfig({
   publicRuntimeConfig: {
     API_ENDPOINT: process.env.NUXT_ENV_API_ENDPOINT
   },
+  target: "static",
+  ssr: false,
   head: {
     title: "nuxt3-GraphQL-pet",
     htmlAttrs: {
