@@ -1,11 +1,10 @@
 import { gql } from "@apollo/client/core";
 import { useQuery } from "@vue/apollo-composable";
-import { Ref } from "vue";
-import { EpisodesQuery, EpisodesQueryVariables } from "~/types/graphql/generated";
+import { Query, QueryEpisodeArgs } from "~/types/graphql/generated";
 
 const EpisodesQueryDefinition = gql`
-    query episodes ($page: Int) {
-       episodes(page: $page) {
+    query episodes ($page: Int, $filter: FilterEpisode) {
+       episodes(page: $page, filter: $filter) {
            results {
                id
                name
@@ -26,10 +25,9 @@ const EpisodesQueryDefinition = gql`
     }   
 `;
 
-export function useEpisodesList (props: { page?: Ref<number>}) {
-  return useQuery<EpisodesQuery, EpisodesQueryVariables>(EpisodesQueryDefinition,
-    reactive({
-      page: props.page
-    })
+export function useEpisodesList (props?: QueryEpisodeArgs) {
+  return useQuery<{episodes: Query["episodes"], QueryEpisodeArgs}>(
+    EpisodesQueryDefinition,
+    props
   );
 }
